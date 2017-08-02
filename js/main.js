@@ -1,8 +1,3 @@
-function Hello() {
-  alert ("Hello World!");
-}
-
-
 (function($) {
 
   Drupal.behaviors.islandoraReclineJS = {
@@ -22,7 +17,7 @@ function Hello() {
       });
 
       // get an element from your HTML for the viewer
-      var $el = $('#islandora-openseadragon');
+      var $el = $('#islandora-recline');
 
       var grid = new recline.View.Grid({
         model: dataset,
