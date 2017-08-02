@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for this module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function islandora_reclinejs_reader_requirements() {
+  $requirements = array();
+  // Ensure translations don't break at install time.
+  $t = get_t();
+  if (!function_exists('libraries_get_libraries')) {
+    module_enable(array('libraries'));
+  }
+  if (!in_array('recline', array_keys(libraries_get_libraries()))) {
+    $readme_link = l($t('README'), drupal_get_path('module', 'islandora_reclinejs') . '/README.txt');
+    $requirements['reclinejs'] = array(
+      'title' => $t('recline.js library'),
+      'description' => $t('recline.js library missing; please consult the !readme for installation instructions.', array('!readme' => $readme_link)),
+      'severity' => REQUIREMENT_ERROR,
+    );
+  }
+  return $requirements;
+}

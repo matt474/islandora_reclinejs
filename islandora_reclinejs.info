@@ -1,0 +1,6 @@
+name = Islandora recline.js
+description = "A plugin allowing recline.js to display Islandora content. Requires the recline.js library."
+dependencies[] = libraries
+core = 7.x
+version = 7.x-dev
+package = Islandora Viewers 
