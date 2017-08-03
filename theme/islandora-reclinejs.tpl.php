@@ -1,1 +1,1 @@
-<div id="islandora-recline"></div>
+<div id="islandora-recline" class="islandora-recline"></div>

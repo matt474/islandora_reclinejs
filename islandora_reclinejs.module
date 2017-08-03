@@ -65,5 +65,5 @@ function islandora_reclinejs_preprocess_islandora_reclinejs(&$variables) {
   drupal_add_js("http://okfnlabs.org/csv.js/csv.js", array('type' =>"external",'weight' => -4));
   drupal_add_js("$library_path/newRecline.js", array('weight' => -3));
   drupal_add_js($module_path . "/js/main.js", array('weight' => -2));
-  
+  drupal_add_css("$module_path/css/islandora_recline.theme.css");
 }
