@@ -51,10 +51,19 @@ function islandora_reclinejs_preprocess_islandora_reclinejs(&$variables) {
   $mustache_library_path = libraries_get_path('mustache.js');
   $module_path = drupal_get_path('module', 'islandora_reclinejs');
   
-  drupal_add_js("$mustache_library_path/mustache.js", array('weight' => -6));
-  drupal_add_js("http://underscorejs.org/underscore-min.js", array('type' =>"external",'weight' => -5));
-  drupal_add_js("http://backbonejs.org/backbone.js", array('type' =>"external",'weight' => -4));
-  drupal_add_js("$library_path/recline.js", array('weight' => -3));
+  $params = $variables['params'];
+  
+  drupal_add_js(array(
+      'islandoraReclineJS' => array(
+        'resourceUri' => $params['url'],
+      ),
+    ),'setting');
+  
+  drupal_add_js("$mustache_library_path/mustache.js", array('weight' => -7));
+  drupal_add_js("http://underscorejs.org/underscore-min.js", array('type' =>"external",'weight' => -6));
+  drupal_add_js("http://backbonejs.org/backbone.js", array('type' =>"external",'weight' => -5));
+  drupal_add_js("http://okfnlabs.org/csv.js/csv.js", array('type' =>"external",'weight' => -4));
+  drupal_add_js("$library_path/newRecline.js", array('weight' => -3));
   drupal_add_js($module_path . "/js/main.js", array('weight' => -2));
   
 }
