@@ -1,6 +1,6 @@
 ## Requirments
-  Reclinejs in the site library folder
-  http://okfnlabs.org/recline/dist/recline.js
-  
+  Reclinejs
+    drush reclinejs-plugin
+    drush reclinejs-csv-plugin
   Mustache
-  https://github.com/janl/mustache.js/
+    drush mustachejs-plugin
