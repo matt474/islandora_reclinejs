@@ -11,6 +11,8 @@
 define('RECLINE_URI', 'http://okfnlabs.org/recline/dist/recline.js');
 define('RECLINE_CSV_URI', 'http://okfnlabs.org/csv.js/csv.js');
 define('MUSTACHE_URI', 'https://github.com/janl/mustache.js/archive/v2.3.0.zip');
+define('UNDERSCORE_URI', 'http://underscorejs.org/underscore-min.js');
+define('BACKBONE_URI', 'http://backbonejs.org/backbone.js');
 
 
 /**
@@ -19,12 +21,16 @@ define('MUSTACHE_URI', 'https://github.com/janl/mustache.js/archive/v2.3.0.zip')
 define('RECLINE_ORIGINAL_DIR', 'recline');
 define('RECLINE_CSV_ORIGINAL_DIR', 'recline');
 define('MUSTACHE_ORIGINAL_DIR', 'mustache.js');
+define('UNDERSCORE_ORIGINAL_DIR', 'underscore');
+define('BACKBONE_ORIGINAL_DIR', 'backbone');
 
 /**
  * Define filename
  */
 define('RECLINE_ORIGINAL_NAME', 'recline.js');
 define('RECLINE_CSV_ORIGINAL_NAME', 'csv.js');
+define('UNDERSCORE_ORIGINAL_NAME', 'underscore.js');
+define('BACKBONE_ORIGINAL_NAME', 'backbone.js');
 /**
  * Implements hook_drush_command().
  */
@@ -50,13 +56,31 @@ function islandora_reclinejs_drush_command() {
     'aliases' => array('reclinejscsv-plugin','reclinejscsvplugin','reclinecsv-plugin','reclinecsvplugin'),
   );
   $items['mustachejs-plugin'] = array(
-    'callback' => 'drush_islandora_mustache_plugin',
+    'callback' => 'drush_islandora_reclinejs_mustache_plugin',
     'description' => dt('Download and install the Mustache.js plugin.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
     'arguments' => array(
       'path' => dt('Optional. A path where to install the Mustache.js plugin. If omitted Drush will use the default location.'),
     ),
     'aliases' => array('mustachejsplugin'),
+  );
+  $items['underscorejs-plugin'] = array(
+    'callback' => 'drush_islandora_reclinejs_underscore_plugin',
+    'description' => dt('Download and install the Underscore.js plugin.'),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'arguments' => array(
+      'path' => dt('Optional. A path where to install the Underscore.js plugin. If omitted Drush will use the default location.'),
+    ),
+    'aliases' => array('underscorejsplugin'),
+  );
+  $items['backbonejs-plugin'] = array(
+    'callback' => 'drush_islandora_reclinejs_backbone_plugin',
+    'description' => dt('Download and install the Backbone.js plugin.'),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'arguments' => array(
+      'path' => dt('Optional. A path where to install the Backbone.js plugin. If omitted Drush will use the default location.'),
+    ),
+    'aliases' => array('backbonejsplugin'),
   );
 
   return $items;
@@ -97,7 +121,7 @@ function drush_islandora_reclinejs_csv_plugin() {
   drush_islandora_reclinejs_install_plugin($path, RECLINE_CSV_URI, RECLINE_CSV_ORIGINAL_DIR, RECLINE_CSV_ORIGINAL_NAME);
 }
 
-function drush_islandora_mustache_plugin() {
+function drush_islandora_reclinejs_mustache_plugin() {
   $args = func_get_args();
   if (!empty($args[0])) {
     $path = $args[0];
@@ -146,6 +170,30 @@ function drush_islandora_mustache_plugin() {
 
   // Set working directory back to the previous working directory.
   chdir($olddir);
+}
+
+function drush_islandora_reclinejs_underscore_plugin() {
+  $args = func_get_args();
+  if (!empty($args[0])) {
+    $path = $args[0];
+  }
+  else {
+    $path = _drush_core_directory("@site:sites/all/libraries");
+  }
+  
+  drush_islandora_reclinejs_install_plugin($path, UNDERSCORE_URI, UNDERSCORE_ORIGINAL_DIR, UNDERSCORE_ORIGINAL_NAME);
+}
+
+function drush_islandora_reclinejs_backbone_plugin() {
+  $args = func_get_args();
+  if (!empty($args[0])) {
+    $path = $args[0];
+  }
+  else {
+    $path = _drush_core_directory("@site:sites/all/libraries");
+  }
+  
+  drush_islandora_reclinejs_install_plugin($path, BACKBONE_URI, BACKBONE_ORIGINAL_DIR, BACKBONE_ORIGINAL_NAME);
 }
 
 function drush_islandora_reclinejs_install_plugin($libraryPath, $source, $dirname, $filename) {  

@@ -49,6 +49,8 @@ function islandora_reclinejs_preprocess_islandora_reclinejs(&$variables) {
   // Variable fedora_object included in results, but not used.
   $recline_library_path = libraries_get_path('recline');
   $mustache_library_path = libraries_get_path('mustache.js');
+  $underscore_library_path = libraries_get_path('underscore');
+  $backbone_library_path = libraries_get_path('backbone');
   $module_path = drupal_get_path('module', 'islandora_reclinejs');
   
   $params = $variables['params'];
@@ -59,9 +61,9 @@ function islandora_reclinejs_preprocess_islandora_reclinejs(&$variables) {
       ),
     ),'setting');
   
-  drupal_add_js("$mustache_library_path/mustache.js", array('weight' => -7));
-  drupal_add_js("http://underscorejs.org/underscore-min.js", array('type' =>"external",'weight' => -6));
-  drupal_add_js("http://backbonejs.org/backbone.js", array('type' =>"external",'weight' => -5));
+  drupal_add_js($mustache_library_path . "/mustache.js", array('weight' => -7));
+  drupal_add_js($underscore_library_path . "/underscore.js", array('weight' => -6));
+  drupal_add_js($backbone_library_path . "/backbone.js", array('weight' => -5));
   drupal_add_js($recline_library_path . "/csv.js", array('weight' => -4));
   drupal_add_js($recline_library_path . "/recline.js", array('weight' => -3));
   drupal_add_js($module_path . "/js/main.js", array('weight' => -2));
