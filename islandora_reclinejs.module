@@ -46,7 +46,6 @@ function islandora_reclinejs_callback($params = array()) {
  * Implements hook_preprocess().
  */
 function islandora_reclinejs_preprocess_islandora_reclinejs(&$variables) {
-  // Variable fedora_object included in results, but not used.
   $recline_library_path = libraries_get_path('recline');
   $mustache_library_path = libraries_get_path('mustache.js');
   $underscore_library_path = libraries_get_path('underscore');
