@@ -228,10 +228,10 @@ function drush_islandora_reclinejs_install_plugin($libraryPath, $source, $dirnam
   }
   
   if (is_file($filepath)) {
-    drush_log(dt('Plugin has been installed in @path', array('@path' => $path)), 'success');
+    drush_log(dt('@name plugin has been installed in @path', array('@name' => $filename, '@path' => $path)), 'success');
   }
   else {
-    drush_log(dt('Drush was unable to install the plugin to @path', array('@path' => $path)), 'error');
+    drush_log(dt('Drush was unable to install the @name plugin to @path', array('@name' => $filename, '@path' => $path)), 'error');
   }
 }
 
