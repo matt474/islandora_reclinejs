@@ -31,6 +31,7 @@ define('RECLINE_ORIGINAL_NAME', 'recline.js');
 define('RECLINE_CSV_ORIGINAL_NAME', 'csv.js');
 define('UNDERSCORE_ORIGINAL_NAME', 'underscore.js');
 define('BACKBONE_ORIGINAL_NAME', 'backbone.js');
+
 /**
  * Implements hook_drush_command().
  */
@@ -81,6 +82,15 @@ function islandora_reclinejs_drush_command() {
       'path' => dt('Optional. A path where to install the Backbone.js plugin. If omitted Drush will use the default location.'),
     ),
     'aliases' => array('backbonejsplugin'),
+  );
+    $items['reclinejs-all-plugin'] = array(
+    'callback' => 'drush_islandora_reclinejs_all_plugin',
+    'description' => dt('Download and install all required plugins.'),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'arguments' => array(
+      'path' => dt('Optional. A path where to install the plugins. If omitted Drush will use the default location.'),
+    ),
+    'aliases' => array('reclinejsall-plugin','reclinejsallplugin'),
   );
 
   return $items;
@@ -223,4 +233,12 @@ function drush_islandora_reclinejs_install_plugin($libraryPath, $source, $dirnam
   else {
     drush_log(dt('Drush was unable to install the plugin to @path', array('@path' => $path)), 'error');
   }
+}
+
+function drush_islandora_reclinejs_all_plugin() {
+  drush_islandora_reclinejs_plugin();
+  drush_islandora_reclinejs_csv_plugin();
+  drush_islandora_reclinejs_mustache_plugin();
+  drush_islandora_reclinejs_underscore_plugin();
+  drush_islandora_reclinejs_backbone_plugin();
 }

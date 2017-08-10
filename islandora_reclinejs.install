@@ -8,7 +8,7 @@
 /**
  * Implements hook_requirements().
  */
-function islandora_reclinejs_reader_requirements() {
+function islandora_reclinejs_requirements() {
   $requirements = array();
   // Ensure translations don't break at install time.
   $t = get_t();
